@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マジックタンノ</title>
     <!-- 後でここにCSSのリンクを追加 -->
+    <script src="js/data-loader.js" defer></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                 我々が作り出すマジタンの深淵にあなたを誘います。
             </p>
         </section>
-        
+
         <section class="events">
             <div class="up-coming-events">
                 <h3>Coming soon...</h3>
@@ -42,262 +43,80 @@
                 </ul>
             </div>
         </section>
+
+        <section id="concept">
+            <h2>年表</h2>
+            <p><strong>「タンノは3000年の眠りから目覚めた」</strong>——身内ネタから始まった設定を軸に、毎回ひとネタ持ち寄っているサークルです。もともとはコミケ参加を想定していたところ、ひょんなことから技術書典への出展に方向転換。以来「マジックタンノリターンズ」を名乗り、頒布のたびにサブタイトルを変えながら活動を続けています。</p>
+
+            <ol class="timeline" id="timeline-list"></ol>
+        </section>
+
+        <section id="members">
+            <h2>構成員</h2>
+
+            <div class="members" id="members-list"></div>
+        </section>
+
+        <div class="ruler" role="presentation"></div>
+
+        <section id="works">
+            <div class="section-head"><span class="section-num">03</span><h2>頒布物</h2></div>
+            <div class="archive" id="works-list">
+                <div class="work">
+                    <span class="tag">新刊 / 2026夏コミケ</span>
+                    <div>
+                        <div class="series">プロジェクト展示</div>
+                        <h3>Air-LiDAR（タンノのエアライダー）</h3>
+                        <p>ESP32マイコンとLiDARユニット「TF-Luna」を凧に搭載し、Wi-Fi/UDP通信でPC上のMatplotlibに地形データをリアルタイム描画するシステムの解説・展示。今回の名乗りの由来。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ruler" role="presentation"></div>
+
+        <section id="links">
+            <div class="section-head"><span class="section-num">04</span><h2>出展情報 / リンク</h2></div>
+            <div class="linkrow">
+                <a class="linkcard" href="https://techbookfest.org/organization/495BVt882QAtwuqzUDj9Rq" target="_blank" rel="noopener">
+                    <span class="k">技術書典 サークルページ</span>
+                    <span class="v">頒布物一覧・最新の出展情報はこちら</span>
+                </a>
+                <a class="linkcard" href="https://x.com/magic_tanno_rtn" target="_blank" rel="noopener">
+                    <span class="k">X（旧Twitter）</span>
+                    <span class="v">@magic_tanno_rtn — 進捗・お知らせ</span>
+                </a>
+                <a class="linkcard" href="https://kalmia.hatenadiary.jp/" target="_blank" rel="noopener">
+                    <span class="k">Yokaのブログ</span>
+                    <span class="v">リバーシAI・深層強化学習の開発記録</span>
+                </a>
+                <a class="linkcard" href="https://github.com/Yoka346/Kalmia-Reversi" target="_blank" rel="noopener">
+                    <span class="k">GitHub</span>
+                    <span class="v">Kalmia-Reversi — 自作リバーシAI</span>
+                </a>
+                <div class="linkcard">
+                    <span class="k">BOOTH「タンノの店」</span>
+                    <span class="v">既刊の電子版を頒布（URL未確認）</span>
+                </div>
+                <a class="linkcard" href="https://gishohaku.dev/" target="_blank" rel="noopener">
+                    <span class="k">技書博 公式サイト</span>
+                    <span class="v">第十四回・2026/9/13開催 / 大田区産業プラザPiO</span>
+                </a>
+                <a class="linkcard" href="https://classic-webcatalog.circle.ms/Circle/23017944" target="_blank" rel="noopener">
+                    <span class="k">コミケ Webカタログ</span>
+                    <span class="v">Circle.ms サークルページ（要ログイン）</span>
+                </a>
+                <a class="linkcard" href="https://portal.circle.ms/Circle/Index/10500535" target="_blank" rel="noopener">
+                    <span class="k">コミケ Circle.msポータル</span>
+                    <span class="v">サークル管理ページ（要ログイン）</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <span>MAGIC TANNO — 技術書典・技書博・コミケ サークル</span>
+            <span class="mono">SLEEPING SINCE 3000 YEARS AGO</span>
+        </footer>
     </main>
-
-</body>
-</html>
-
-
-<section id="concept">
-    <h2>年表</h2>
-    <p><strong>「タンノは3000年の眠りから目覚めた」</strong>——身内ネタから始まった設定を軸に、毎回ひとネタ持ち寄っているサークルです。もともとはコミケ参加を想定していたところ、ひょんなことから技術書典への出展に方向転換。以来「マジックタンノリターンズ」を名乗り、頒布のたびにサブタイトルを変えながら活動を続けています。</p>
-    
-    <ol class="timeline">
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2023-05-21">2023年5月21日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">サークル結成と技術書典14への参加</h3>
-                <p class="timeline-content">Yoka・人参食べたい(Maki)・初学者リョウ（現: 最強つちだズ）・こたろの4名で結成。技術書典14にて，「タンノ電子計算 Vol.1」，「弄って学ぶGUID Partition Table」を頒布．</p>
-            </div>
-        </li>
-
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2023-11-12">2023年11月12日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">技術書典15</h3>
-                <p class="timeline-content">技術書典15にて，「タンノ電子計算 Vol.2」，「フーリエ変換勉強ノート」を頒布</div></p>
-            </div>
-        </li>
-
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2024-5-26">2024年5月26日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">技術書典16</h3>
-                <p class="timeline-content">技術書典16にて，「タンノ電子計算 Vol.3」，「4x4リバーシで強化学習」を頒布</p>
-            </div>
-        </li>
-
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2024-11-03">2024年11月3日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">技術書典17</h3>
-                <p class="timeline-content">「タンノ電子計算vol.4 -100周年記念号-」を頒布。</p>
-            </div>
-        </li>
-
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2025-08-17">2025年8月17日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">コミックマーケット（C106）</h3>
-                <p class="timeline-content">自己勝手，ばたーが加入．夏コミ初出展。2日目にて「タンノ電子計算vol.5」を頒布．ばたーが開発したロボットゲーム「BCC:」を展示．</p>
-            </div>
-        </li>
-
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2025-11">2025年11月16日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">技術書典19</h3>
-                <p class="timeline-content">Yoka・人参食べたい(Maki)・最強つちだズ・自己勝手の4名体制に。夏コミの既刊を頒布．</p>
-            </div>
-        </li>
-
-        <li class="timeline-event">
-            <time class="timeline-date" datetime="2026-08">2026年8月16日</time>
-            <div class="timeline-body">
-                <h3 class="timeline-title">C108（夏コミケ）</h3>
-                <p class="timeline-content">夏コミ2日目にて「甦れPC-98キーボード」，「シームレス・コネクト！ 波と信号をロスなく伝送する技術と実践」，「オセロAIイントロダクション」を頒布．</p>
-            </div>
-        </li>
-    </ol>
-</section>
-
-  <section id="members">
-    <div class="section-head"><span class="section-num">02</span><h2>メンバー</h2></div>
-
-    <div class="stat-strip">
-      <div class="stat"><span class="n">3</span><span class="l">参加イベント種別</span></div>
-      <div class="stat"><span class="n">5+</span><span class="l">技術書典 出展回数</span></div>
-      <div class="stat"><span class="n">2023</span><span class="l">結成年</span></div>
-    </div>
-
-    <div class="crew">
-      <div class="crew-card">
-        <span class="id mono">@Kalmia24879903</span>
-        <h3>Yoka</h3>
-        <span class="role-tag">AI / GAME AI</span>
-        <p>リバーシAI「Kalmia」の開発者。深層強化学習・モンテカルロ木探索によるゲームAIを専門とし、オセロAI大会での優勝歴もある。サークルのブログ更新も担当。</p>
-      </div>
-      <div class="crew-card">
-        <span class="id mono">@A_kyoutoyenamta</span>
-        <h3>人参食べたい（Maki）</h3>
-        <span class="role-tag">HARDWARE</span><span class="role-tag">無線</span>
-        <p>結成時からのハードウェア担当。50MHz DSBトランシーバーの自作記事などを執筆する、サークルの無線班。</p>
-      </div>
-      <div class="crew-card">
-        <span class="id mono">callsign 未公開</span>
-        <h3>最強つちだズ</h3>
-        <span class="role-tag">MEMBER</span>
-        <p>技術書典19より参加。詳細は今後の頒布物にて。</p>
-      </div>
-      <div class="crew-card">
-        <span class="id mono">C106〜参加</span>
-        <h3>自己勝手</h3>
-        <span class="role-tag">MEMBER</span>
-        <p>コミケ初出展のC106（2025夏）から参加。Makiと共著で「シームレス・コネクト！」を執筆。</p>
-      </div>
-    </div>
-    <p style="font-size:.82rem; color:var(--ink-soft); margin-top:14px;">※ 技術書典14（2023年）はYoka・人参食べたい（Maki）・初学者リョウ・こたろの4名で結成（ソフト3名・ハード1名）。以降メンバーは出展のたびに入れ替わりつつ、Yoka・Makiの2人が軸として活動を継続。</p>
-  </section>
-
-  <div class="ruler" role="presentation"></div>
-
-  <section id="works">
-    <div class="section-head"><span class="section-num">03</span><h2>頒布物</h2></div>
-    <div class="archive">
-      <div class="work">
-        <span class="tag">新刊 / 2026夏コミケ</span>
-        <div>
-          <div class="series">Maki 著</div>
-          <h3>甦れPC-98キーボード 〜PICマイコンとC言語で作るUSB変換アダプタ〜</h3>
-          <p>壊れたPC-98用キーボードを、PICマイコン+C言語で作るUSB変換アダプタで現代のPCに繋ぐハードウェア工作本。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag">新刊 / 2026夏コミケ</span>
-        <div>
-          <div class="series">yoka 著</div>
-          <h3>オセロAIイントロダクション</h3>
-          <p>リバーシAI「Kalmia」の開発者による、オセロAI入門書。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag">新刊 / 2026夏コミケ</span>
-        <div>
-          <div class="series">プロジェクト展示</div>
-          <h3>Air-LiDAR（タンノのエアライダー）</h3>
-          <p>ESP32マイコンとLiDARユニット「TF-Luna」を凧に搭載し、Wi-Fi/UDP通信でPC上のMatplotlibに地形データをリアルタイム描画するシステムの解説・展示。今回の名乗りの由来。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊 / C108</span>
-        <div>
-          <div class="series">Maki / 自己勝手 共著</div>
-          <h3>シームレス・コネクト！〜波と信号をロスなく伝送する技術と実践〜</h3>
-          <p>波と信号を無駄なく伝える伝送技術を、理論と実践の両面から扱う一冊（40ページ）。技書博14（2026/9/13）でも頒布予定。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊 / 書典19</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.5</div>
-          <h3>光のかけはし Unity解説&光通信</h3>
-          <p>Unityの解説を軸に、光通信の信号増幅・変調、半導体、光ファイバーの基礎知識をカバー。自作アンテナでの観測や無線光通信実験も収録。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">単著</div>
-          <h3>弄って学ぶGUID Partition Table</h3>
-          <p>ディスクのパーティション管理方式の1つであるGPTの仕組みを深掘りした一冊。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊 / 書典17</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.4</div>
-          <h3>-100周年記念号-</h3>
-          <p>無線・電波天文学・強化学習などを扱った回。技術書典17（あ26）で頒布。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.3</div>
-          <h3>PlutoSDRをGNU Radioで動かしてみる ほか</h3>
-          <p>vol.2から発展し、SDR（ソフトウェア無線）を利用した実践的な通信を解説。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.2</div>
-          <h3>手持ちの測定器で電波天文</h3>
-          <p>TinySA等の簡易スペクトラムアナライザで太陽電波を受信し、宇宙の構成について考察する回。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.1</div>
-          <h3>6mDSBトランシーバー・ワイヤレスモデム 製作記 ほか</h3>
-          <p>アマチュア無線6mバンド用DSBトランシーバーと、自作ワイヤレスモデムの製作記。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">リバーシで強化学習 シリーズ</div>
-          <h3>4x4／8x8リバーシで強化学習!!（物理本）</h3>
-          <p>強化学習によるリバーシAI構築を扱う既刊2冊。8x8編はテーブルベースではなく関数近似・深層強化学習が中心。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊（電子）</span>
-        <div>
-          <div class="series">バックナンバー</div>
-          <h3>技術書典14〜17 頒布分</h3>
-          <p>過去の技術書典で頒布した電子書籍群。オンラインマーケットで購入可能。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="ruler" role="presentation"></div>
-
-  <section id="links">
-    <div class="section-head"><span class="section-num">04</span><h2>出展情報 / リンク</h2></div>
-    <div class="linkrow">
-      <a class="linkcard" href="https://techbookfest.org/organization/495BVt882QAtwuqzUDj9Rq" target="_blank" rel="noopener">
-        <span class="k">技術書典 サークルページ</span>
-        <span class="v">頒布物一覧・最新の出展情報はこちら</span>
-      </a>
-      <a class="linkcard" href="https://x.com/magic_tanno_rtn" target="_blank" rel="noopener">
-        <span class="k">X（旧Twitter）</span>
-        <span class="v">@magic_tanno_rtn — 進捗・お知らせ</span>
-      </a>
-      <a class="linkcard" href="https://kalmia.hatenadiary.jp/" target="_blank" rel="noopener">
-        <span class="k">Yokaのブログ</span>
-        <span class="v">リバーシAI・深層強化学習の開発記録</span>
-      </a>
-      <a class="linkcard" href="https://github.com/Yoka346/Kalmia-Reversi" target="_blank" rel="noopener">
-        <span class="k">GitHub</span>
-        <span class="v">Kalmia-Reversi — 自作リバーシAI</span>
-      </a>
-      <div class="linkcard">
-        <span class="k">BOOTH「タンノの店」</span>
-        <span class="v">既刊の電子版を頒布（URL未確認）</span>
-      </div>
-      <a class="linkcard" href="https://gishohaku.dev/" target="_blank" rel="noopener">
-        <span class="k">技書博 公式サイト</span>
-        <span class="v">第十四回・2026/9/13開催 / 大田区産業プラザPiO</span>
-      </a>
-      <a class="linkcard" href="https://classic-webcatalog.circle.ms/Circle/23017944" target="_blank" rel="noopener">
-        <span class="k">コミケ Webカタログ</span>
-        <span class="v">Circle.ms サークルページ（要ログイン）</span>
-      </a>
-      <a class="linkcard" href="https://portal.circle.ms/Circle/Index/10500535" target="_blank" rel="noopener">
-        <span class="k">コミケ Circle.msポータル</span>
-        <span class="v">サークル管理ページ（要ログイン）</span>
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <span>MAGIC TANNO — 技術書典・技書博・コミケ サークル</span>
-    <span class="mono">SLEEPING SINCE 3000 YEARS AGO</span>
-  </footer>
-
-</div>
 </body>
 </html>
