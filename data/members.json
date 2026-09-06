@@ -1,0 +1,37 @@
+[
+  {
+    "id": "yoka",
+    "name": "Yoka",
+    "roles": ["ゲーム情報学"],
+    "description": "オセロAI「Kalmia」の開発者。オセロAI大会での優勝経験有。CodinGame Othelloという常設オセロAIコンテストでは、世界ランク最高4位。",
+    "contacts": [
+      {
+        "type": "x",
+        "label": "X（旧Twitter）",
+        "value": "@Kalmia24879903",
+        "url": "https://x.com/Kalmia24879903"
+      }
+    ]
+  },
+  {
+    "id": "maki",
+    "name": "人参食べたい（Maki）",
+    "roles": ["HARDWARE", "無線"],
+    "description": "結成時からのハードウェア担当。50MHz DSBトランシーバーの自作記事などを執筆する、サークルの無線班。",
+    "contacts": []
+  },
+  {
+    "id": "saikyo-tsuchidazu",
+    "name": "最強つちだズ",
+    "roles": ["MEMBER"],
+    "description": "技術書典19より参加。詳細は今後の頒布物にて。",
+    "contacts": []
+  },
+  {
+    "id": "jikokatte",
+    "name": "自己勝手",
+    "roles": ["MEMBER"],
+    "description": "コミケ初出展のC106（2025夏）から参加。Makiと共著で「シームレス・コネクト！」を執筆。",
+    "contacts": []
+  }
+]

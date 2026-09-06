@@ -1,0 +1,101 @@
+[
+  {
+    "id": "work-pc98-keyboard",
+    "type": "新刊",
+    "event": "C108",
+    "author": "Maki",
+    "title": "甦れPC-98キーボード 〜PICマイコンとC言語で作るUSB変換アダプタ〜",
+    "description": "壊れたPC-98用キーボードを、PICマイコン+C言語で作るUSB変換アダプタで現代のPCに繋ぐハードウェア工作本。",
+    "url": "https://webcatalog.circle.ms/circle/23017944?t=1786627759673"
+  },
+  {
+    "id": "work-othello-ai-intro",
+    "type": "新刊",
+    "event": "C108",
+    "author": "yoka",
+    "title": "オセロAIイントロダクション",
+    "description": "リバーシAI「Kalmia」の開発者による、オセロAI入門書。",
+    "url": "https://webcatalog.circle.ms/circle/23017944?t=1786627759673"
+  },
+  {
+    "id": "work-seamless-connect",
+    "type": "既刊",
+    "event": "C108",
+    "author": "Maki / 自己勝手 共著",
+    "title": "シームレス・コネクト！〜波と信号をロスなく伝送する技術と実践〜",
+    "description": "波と信号を無駄なく伝える伝送技術を、理論と実践の両面から扱う一冊。",
+    "url": "https://webcatalog.circle.ms/circle/23017944?t=1786627759673"
+  },
+  {
+    "id": "work-tanno-vol5",
+    "type": "既刊",
+    "event": "技術書典19",
+    "author": "タンノ電子計算 vol.5",
+    "title": "光のかけはし Unity解説&光通信",
+    "description": "Unityの解説を軸に、光通信の信号増幅・変調、半導体、光ファイバーの基礎知識をカバー。自作アンテナでの観測や無線光通信実験も収録。",
+    "url": "https://techbookfest.org/product/example"
+  },
+  {
+    "id": "work-gpt-guide",
+    "type": "既刊",
+    "event": "",
+    "author": "単著",
+    "title": "弄って学ぶGUID Partition Table",
+    "description": "ディスクのパーティション管理方式の1つであるGPTの仕組みを深掘りした一冊。",
+    "url": ""
+  },
+  {
+    "id": "work-tanno-vol4",
+    "type": "既刊",
+    "event": "技術書典17",
+    "author": "タンノ電子計算 vol.4",
+    "title": "-100周年記念号-",
+    "description": "無線・電波天文学・強化学習などを扱った回。技術書典17（あ26）で頒布。",
+    "url": ""
+  },
+  {
+    "id": "work-tanno-vol3",
+    "type": "既刊",
+    "event": "",
+    "author": "タンノ電子計算 vol.3",
+    "title": "PlutoSDRをGNU Radioで動かしてみる ほか",
+    "description": "vol.2から発展し、SDR（ソフトウェア無線）を利用した実践的な通信を解説。",
+    "url": ""
+  },
+  {
+    "id": "work-tanno-vol2",
+    "type": "既刊",
+    "event": "",
+    "author": "タンノ電子計算 vol.2",
+    "title": "手持ちの測定器で電波天文",
+    "description": "TinySA等の簡易スペクトラムアナライザで太陽電波を受信し、宇宙の構成について考察する回。",
+    "url": ""
+  },
+  {
+    "id": "work-tanno-vol1",
+    "type": "既刊",
+    "event": "",
+    "author": "タンノ電子計算 vol.1",
+    "title": "6mDSBトランシーバー・ワイヤレスモデム 製作記 ほか",
+    "description": "アマチュア無線6mバンド用DSBトランシーバーと、自作ワイヤレスモデムの製作記。",
+    "url": ""
+  },
+  {
+    "id": "work-reversi-rl-series",
+    "type": "既刊",
+    "event": "",
+    "author": "リバーシで強化学習 シリーズ",
+    "title": "4x4／8x8リバーシで強化学習!!（物理本）",
+    "description": "強化学習によるリバーシAI構築を扱う既刊2冊。8x8編はテーブルベースではなく関数近似・深層強化学習が中心。",
+    "url": ""
+  },
+  {
+    "id": "work-back-numbers",
+    "type": "既刊（電子）",
+    "event": "",
+    "author": "バックナンバー",
+    "title": "技術書典14〜17 頒布分",
+    "description": "過去の技術書典で頒布した電子書籍群。オンラインマーケットで購入可能。",
+    "url": "https://example.booth.pm/"
+  }
+]

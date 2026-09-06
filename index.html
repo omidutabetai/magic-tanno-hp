@@ -1,550 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>マジックタンノ</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
-
-:root{
-  --ground:#ece4d2;
-  --panel:#ddd0ac;
-  --panel-line:#c9b98c;
-  --ink:#211c14;
-  --ink-soft:#6b5f47;
-  --brass:#8a5a1e;
-  --brass-strong:#6e4415;
-  --signal:#2c7a56;
-  --rust:#8a3a2a;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#14151b;
-    --panel:#1d1e26;
-    --panel-line:#33323a;
-    --ink:#ece4d2;
-    --ink-soft:#a89f8c;
-    --brass:#d1a04b;
-    --brass-strong:#e8bd6c;
-    --signal:#5ee6a8;
-    --rust:#e08862;
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#14151b;
-  --panel:#1d1e26;
-  --panel-line:#33323a;
-  --ink:#ece4d2;
-  --ink-soft:#a89f8c;
-  --brass:#d1a04b;
-  --brass-strong:#e8bd6c;
-  --signal:#5ee6a8;
-  --rust:#e08862;
-}
-
-*{box-sizing:border-box;}
-body{
-  background:var(--ground);
-  color:var(--ink);
-  font-family:'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
-  line-height:1.8;
-}
-.mono{font-family:'JetBrains Mono', ui-monospace, monospace;}
-h1,h2,h3,.antique{font-family:'Zen Antique', 'Zen Kaku Gothic New', serif; text-wrap:balance;}
-
-a{color:var(--brass-strong);}
-a:focus-visible, button:focus-visible{outline:2px solid var(--signal); outline-offset:3px;}
-
-.page{max-width:920px; margin:0 auto; padding:0 20px 80px;}
-
-/* ---------- ruler / calibration divider ---------- */
-.ruler{
-  height:14px;
-  margin:0;
-  background-image:
-    repeating-linear-gradient(90deg, var(--panel-line) 0 1px, transparent 1px 24px),
-    repeating-linear-gradient(90deg, var(--panel-line) 0 1px, transparent 1px 96px);
-  background-size: 24px 7px, 96px 14px;
-  background-position: bottom, bottom;
-  background-repeat: repeat-x;
-  opacity:.8;
-}
-
-/* ---------- hero ---------- */
-.hero{
-  padding:52px 0 34px;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:32px;
-  justify-content:space-between;
-}
-.hero-text{flex:1 1 340px; min-width:280px;}
-.eyebrow{
-  font-family:'JetBrains Mono', monospace;
-  font-size:.72rem;
-  letter-spacing:.14em;
-  color:var(--signal);
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:0 0 14px;
-}
-.eyebrow::before{
-  content:"";
-  width:8px;height:8px;border-radius:50%;
-  background:var(--signal);
-  box-shadow:0 0 0 3px color-mix(in srgb, var(--signal) 25%, transparent);
-}
-.hero h1{
-  font-size:clamp(2.6rem, 7vw, 4.2rem);
-  margin:0 0 6px;
-  color:var(--ink);
-  letter-spacing:.03em;
-}
-.hero .sub{
-  font-family:'Zen Antique', serif;
-  font-size:clamp(1rem,2.6vw,1.3rem);
-  color:var(--brass-strong);
-  margin:0 0 18px;
-}
-.hero p.lede{
-  max-width:56ch;
-  color:var(--ink-soft);
-  font-size:.98rem;
-}
-.badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
-.badge{
-  font-family:'JetBrains Mono', monospace;
-  font-size:.72rem;
-  letter-spacing:.03em;
-  padding:5px 10px;
-  border:1px solid var(--panel-line);
-  border-radius:3px;
-  color:var(--ink-soft);
-  background:var(--panel);
-}
-
-.dial-wrap{flex:0 0 auto; width:min(230px, 40vw);}
-.dial-wrap svg{width:100%; height:auto; display:block;}
-.dial-label{font-size:9px; font-family:'JetBrains Mono', monospace; fill:var(--ink-soft);}
-.dial-needle{transform-origin:100px 100px; animation:sweep 7s ease-in-out infinite;}
-@keyframes sweep{
-  0%,100%{transform:rotate(-32deg);}
-  50%{transform:rotate(28deg);}
-}
-@media (prefers-reduced-motion: reduce){
-  .dial-needle{animation:none; transform:rotate(-6deg);}
-}
-
-/* ---------- sections ---------- */
-section{padding:40px 0;}
-.section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:22px;}
-.section-num{
-  font-family:'JetBrains Mono', monospace;
-  font-size:.78rem;
-  color:var(--brass);
-  border:1px solid var(--panel-line);
-  padding:2px 7px;
-  border-radius:2px;
-}
-h2{font-size:1.5rem; margin:0; color:var(--ink);}
-
-/* concept: seal + text */
-.concept{
-  display:grid;
-  grid-template-columns:150px 1fr;
-  gap:28px;
-  align-items:start;
-}
-@media (max-width:560px){ .concept{grid-template-columns:1fr;} }
-.seal{
-  width:150px; height:150px;
-  border:2px solid var(--brass);
-  border-radius:6px;
-  display:flex; align-items:center; justify-content:center;
-  text-align:center;
-  font-family:'Zen Antique', serif;
-  font-size:1.5rem;
-  color:var(--brass-strong);
-  line-height:1.5;
-  background:var(--panel);
-  writing-mode:vertical-rl;
-  letter-spacing:.15em;
-  padding:14px 6px;
-}
-.concept .body p{color:var(--ink-soft); font-size:.96rem; max-width:62ch;}
-.concept .body strong{color:var(--ink); font-weight:700;}
-.lineage{list-style:none; margin:18px 0 0; padding:14px 0 0; border-top:1px solid var(--panel-line); display:flex; flex-direction:column; gap:9px;}
-.lineage li{display:grid; grid-template-columns:110px 1fr; gap:12px; font-size:.85rem; color:var(--ink-soft); align-items:baseline;}
-.lineage .mono{color:var(--brass); font-size:.76rem;}
-
-/* members */
-.stat-strip{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
-  gap:1px;
-  background:var(--panel-line);
-  border:1px solid var(--panel-line);
-  border-radius:4px;
-  overflow:hidden;
-  margin-bottom:24px;
-}
-.stat{
-  background:var(--panel);
-  padding:16px 14px;
-  text-align:center;
-}
-.stat .n{
-  font-family:'JetBrains Mono', monospace;
-  font-size:1.7rem;
-  color:var(--signal);
-  display:block;
-}
-.stat .l{font-size:.74rem; color:var(--ink-soft); letter-spacing:.02em;}
-
-.crew{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:14px;}
-.crew-card{
-  border:1px solid var(--panel-line);
-  border-radius:6px;
-  padding:18px;
-  background:var(--panel);
-  position:relative;
-}
-.crew-card .id{
-  font-family:'JetBrains Mono', monospace;
-  font-size:.7rem;
-  color:var(--ink-soft);
-  letter-spacing:.05em;
-}
-.crew-card h3{font-size:1.15rem; margin:6px 0 8px; color:var(--ink);}
-.crew-card p{font-size:.88rem; color:var(--ink-soft); margin:0;}
-.role-tag{
-  display:inline-block;
-  font-family:'JetBrains Mono', monospace;
-  font-size:.66rem;
-  color:var(--brass-strong);
-  border:1px solid var(--brass);
-  border-radius:2px;
-  padding:2px 6px;
-  margin:2px 6px 8px 0;
-}
-
-/* works archive */
-.archive{border-top:1px solid var(--panel-line);}
-.work{
-  display:grid;
-  grid-template-columns:88px 1fr;
-  gap:18px;
-  padding:20px 0;
-  border-bottom:1px solid var(--panel-line);
-  align-items:start;
-}
-@media (max-width:560px){ .work{grid-template-columns:1fr;} }
-.work .tag{
-  font-family:'JetBrains Mono', monospace;
-  font-size:.68rem;
-  color:var(--ground);
-  background:var(--signal);
-  padding:3px 6px;
-  border-radius:2px;
-  display:inline-block;
-  height:fit-content;
-}
-.work .tag.kikanshi{background:var(--rust);}
-.work h3{font-size:1.05rem; margin:0 0 6px; color:var(--ink); font-family:'Zen Kaku Gothic New',sans-serif; font-weight:700;}
-.work .series{color:var(--brass-strong); font-size:.78rem; font-family:'JetBrains Mono',monospace; margin-bottom:4px;}
-.work p{color:var(--ink-soft); font-size:.9rem; margin:0;}
-
-/* links / exhibition */
-.linkrow{display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;}
-.linkcard{
-  flex:1 1 220px;
-  border:1px solid var(--panel-line);
-  border-radius:6px;
-  padding:16px 18px;
-  background:var(--panel);
-  text-decoration:none;
-  color:var(--ink);
-  display:block;
-}
-.linkcard:hover{border-color:var(--brass);}
-.linkcard .k{
-  font-family:'JetBrains Mono', monospace;
-  font-size:.68rem;
-  color:var(--signal);
-  letter-spacing:.06em;
-  display:block;
-  margin-bottom:6px;
-}
-.linkcard .v{font-size:.95rem; color:var(--ink-soft);}
-
-footer{
-  padding:30px 0 10px;
-  color:var(--ink-soft);
-  font-size:.78rem;
-  font-family:'JetBrains Mono', monospace;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:8px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マジックタンノ</title>
+    <!-- 後でここにCSSのリンクを追加 -->
+    <script src="js/data-loader.js" defer></script>
 </head>
+
 <body>
+    <header>
+        <h1>マジックタンノ</h1>
+        <h2>3000年の眠りから目覚めました</h2>
+    </header>
 
-<div class="page">
+    <main>
+        <section class="about-us">
+            <p>
+                時は紀元前10世紀、九州北部に農耕文化の産声があがり、この島国がこれから現在へ至るまで約3000年続く農耕文化の第一歩を踏み出した歴史的瞬間の裏側で、我々はひっそりとサークルを結成しました。
+            </p>
+            <p>
+                私たちは、サークルメンバーが趣味の開発・研究で得た知見を書籍化してアウトプットすることを主な活動としています。その分野は多岐に渡り、半導体プロセス・無線・SDR・LiDAR測距といったハードウェアから、ゲーム開発・ゲーム情報学などの情報科学分野まで幅広い分野を扱っています。
+            </p>
+            <p>
+                我々が作り出すマジタンの深淵にあなたを誘います。
+            </p>
+        </section>
 
-  <header class="hero">
-    <div class="hero-text">
-      <p class="eyebrow">ON AIR — 技術書典・技書博・コミケ 出展サークル</p>
-      <h1>マジックタンノ</h1>
-      <p class="sub">〜タンノの Air-LiDAR〜</p>
-      <p class="lede">3000年の眠りから目覚めた、という設定で活動するサークル。メンバーが趣味の開発・研究で得た知見を書籍化してアウトプットする。半導体プロセス・無線・SDR・LiDAR測距といったハードウェアから、Unity・AIアルゴリズム・ディスク管理などのソフトウェアまで、扱う領域は幅広い。</p>
-      <div class="badges">
-        <span class="badge">C108 夏コミ2日目 / 東"V"-10ab（東7ホール）</span>
-        <span class="badge">技術書典 14・15・16・17・19 出展</span>
-        <span class="badge">技書博14 出展予定（9/13）</span>
-      </div>
-    </div>
+        <section class="events">
+            <div class="up-coming-events">
+                <h3>Coming soon...</h3>
+                <ul>
+                    <li class="event">技書博14 出展予定（9/13）</li>
+                </ul>
+            </div>
 
-    <div class="dial-wrap" aria-hidden="true">
-      <svg viewBox="0 0 200 130">
-        <path d="M 20 110 A 80 80 0 0 1 180 110" fill="none" stroke="var(--panel-line)" stroke-width="1.5"/>
-        <g class="mono">
-          <text x="18" y="122" class="dial-label">3000</text>
-          <text x="94" y="20" class="dial-label" text-anchor="middle">現在</text>
-          <text x="168" y="122" class="dial-label" text-anchor="end">未来</text>
-        </g>
-        <g stroke="var(--panel-line)" stroke-width="1">
-          <line x1="20" y1="110" x2="26" y2="98"/>
-          <line x1="42" y1="72" x2="49" y2="62"/>
-          <line x1="76" y1="45" x2="80" y2="33"/>
-          <line x1="118" y1="33" x2="120" y2="45"/>
-          <line x1="151" y1="62" x2="158" y2="72"/>
-          <line x1="174" y1="98" x2="180" y2="110"/>
-        </g>
-        <g class="dial-needle">
-          <line x1="100" y1="100" x2="100" y2="34" stroke="var(--signal)" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="100" cy="100" r="6" fill="var(--signal)"/>
-        </g>
-        <circle cx="100" cy="100" r="2" fill="var(--brass-strong)"/>
-      </svg>
-    </div>
-  </header>
+            <div class="past-events">
+                <h3>終了したイベント</h3>
+                <ul>
+                    <li class="event">C108 夏コミ2日目 / 東"V"-10ab（東7ホール）</li>
+                    <li class="event">技術書典 14・15・16・17・19</li>
+                </ul>
+            </div>
+        </section>
 
-  <div class="ruler" role="presentation"></div>
+        <section id="concept">
+            <h2>年表</h2>
+            <p><strong>「タンノは3000年の眠りから目覚めた」</strong>——身内ネタから始まった設定を軸に、毎回ひとネタ持ち寄っているサークルです。もともとはコミケ参加を想定していたところ、ひょんなことから技術書典への出展に方向転換。以来「マジックタンノリターンズ」を名乗り、頒布のたびにサブタイトルを変えながら活動を続けています。</p>
 
-  <section id="concept">
-    <div class="section-head"><span class="section-num">01</span><h2>コンセプト</h2></div>
-    <div class="concept">
-      <div class="seal">発掘記録</div>
-      <div class="body">
-        <p><strong>「タンノは3000年の眠りから目覚めた」</strong>——身内ネタから始まった設定を軸に、毎回ひとネタ持ち寄っているサークルです。もともとはコミケ参加を想定していたところ、ひょんなことから技術書典への出展に方向転換。以来「マジックタンノリターンズ」を名乗り、頒布のたびにサブタイトルを変えながら活動を続けています。</p>
-        <p>正式な名乗りは<strong>「マジックタンノリターンズ タンノはマジタンの椅子人間」</strong>ですが、企画やイベントによって「タンノのAir-LiDAR（エアライダー）」や、BOOTHでは「タンノの店」としても展開する、名前が定まらないサークルでもあります。</p>
-        <ul class="lineage">
-          <li><span class="mono">技術書典14</span><span>Yoka・人参食べたい(Maki)・初学者リョウ・こたろの4名で結成。名乗りは「〜タンノはもうメイドじゃない!!〜」</span></li>
-          <li><span class="mono">技術書典15〜16</span><span>電子書籍を継続頒布</span></li>
-          <li><span class="mono">技術書典17</span><span>あ26にてタンノ電子計算vol.4「-100周年記念号-」を頒布（オフライン11/3）。名乗りは「〜タンノは常にプリンシパル〜」</span></li>
-          <li><span class="mono">C106（2025夏）</span><span>コミケ初出展。東U01a（端の方）で当選。自己勝手が参加。Unity・AI系の頒布物を予定</span></li>
-          <li><span class="mono">技術書典19</span><span>す11にてタンノ電子計算vol.5を頒布（2025/11）。Yoka・人参食べたい(Maki)・最強つちだズの3名体制に。名乗りは「〜タンノはマジタンの椅子人間〜」</span></li>
-          <li><span class="mono">C108（2026夏コミケ）</span><span>2日目・東地区"V"ブロック-10ab（東7ホール）にて新刊3冊を頒布。名乗りは「〜タンノのAir-LiDAR〜」</span></li>
-          <li><span class="mono">技書博14（2026/9/13 開催予定）</span><span>大田区産業プラザPiOにて開催予定。Maki/自己勝手の共著シームレス・コネクト！を頒布予定。現在に至る</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
+            <ol class="timeline" id="timeline-list"></ol>
+        </section>
 
-  <div class="ruler" role="presentation"></div>
+        <section id="members">
+            <h2>構成員</h2>
 
-  <section id="members">
-    <div class="section-head"><span class="section-num">02</span><h2>メンバー</h2></div>
+            <div class="members" id="members-list"></div>
+        </section>
 
-    <div class="stat-strip">
-      <div class="stat"><span class="n">3</span><span class="l">参加イベント種別</span></div>
-      <div class="stat"><span class="n">5+</span><span class="l">技術書典 出展回数</span></div>
-      <div class="stat"><span class="n">2023</span><span class="l">結成年</span></div>
-    </div>
+        <div class="ruler" role="presentation"></div>
 
-    <div class="crew">
-      <div class="crew-card">
-        <span class="id mono">@Kalmia24879903</span>
-        <h3>Yoka</h3>
-        <span class="role-tag">AI / GAME AI</span>
-        <p>リバーシAI「Kalmia」の開発者。深層強化学習・モンテカルロ木探索によるゲームAIを専門とし、オセロAI大会での優勝歴もある。サークルのブログ更新も担当。</p>
-      </div>
-      <div class="crew-card">
-        <span class="id mono">@A_kyoutoyenamta</span>
-        <h3>人参食べたい（Maki）</h3>
-        <span class="role-tag">HARDWARE</span><span class="role-tag">無線</span>
-        <p>結成時からのハードウェア担当。50MHz DSBトランシーバーの自作記事などを執筆する、サークルの無線班。</p>
-      </div>
-      <div class="crew-card">
-        <span class="id mono">callsign 未公開</span>
-        <h3>最強つちだズ</h3>
-        <span class="role-tag">MEMBER</span>
-        <p>技術書典19より参加。詳細は今後の頒布物にて。</p>
-      </div>
-      <div class="crew-card">
-        <span class="id mono">C106〜参加</span>
-        <h3>自己勝手</h3>
-        <span class="role-tag">MEMBER</span>
-        <p>コミケ初出展のC106（2025夏）から参加。Makiと共著で「シームレス・コネクト！」を執筆。</p>
-      </div>
-    </div>
-    <p style="font-size:.82rem; color:var(--ink-soft); margin-top:14px;">※ 技術書典14（2023年）はYoka・人参食べたい（Maki）・初学者リョウ・こたろの4名で結成（ソフト3名・ハード1名）。以降メンバーは出展のたびに入れ替わりつつ、Yoka・Makiの2人が軸として活動を継続。</p>
-  </section>
+        <section id="works">
+            <div class="section-head"><span class="section-num">03</span><h2>頒布物</h2></div>
+            <div class="archive" id="works-list">
+                <div class="work">
+                    <span class="tag">新刊 / 2026夏コミケ</span>
+                    <div>
+                        <div class="series">プロジェクト展示</div>
+                        <h3>Air-LiDAR（タンノのエアライダー）</h3>
+                        <p>ESP32マイコンとLiDARユニット「TF-Luna」を凧に搭載し、Wi-Fi/UDP通信でPC上のMatplotlibに地形データをリアルタイム描画するシステムの解説・展示。今回の名乗りの由来。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <div class="ruler" role="presentation"></div>
+        <div class="ruler" role="presentation"></div>
 
-  <section id="works">
-    <div class="section-head"><span class="section-num">03</span><h2>頒布物</h2></div>
-    <div class="archive">
-      <div class="work">
-        <span class="tag">新刊 / 2026夏コミケ</span>
-        <div>
-          <div class="series">Maki 著</div>
-          <h3>甦れPC-98キーボード 〜PICマイコンとC言語で作るUSB変換アダプタ〜</h3>
-          <p>壊れたPC-98用キーボードを、PICマイコン+C言語で作るUSB変換アダプタで現代のPCに繋ぐハードウェア工作本。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag">新刊 / 2026夏コミケ</span>
-        <div>
-          <div class="series">yoka 著</div>
-          <h3>オセロAIイントロダクション</h3>
-          <p>リバーシAI「Kalmia」の開発者による、オセロAI入門書。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag">新刊 / 2026夏コミケ</span>
-        <div>
-          <div class="series">プロジェクト展示</div>
-          <h3>Air-LiDAR（タンノのエアライダー）</h3>
-          <p>ESP32マイコンとLiDARユニット「TF-Luna」を凧に搭載し、Wi-Fi/UDP通信でPC上のMatplotlibに地形データをリアルタイム描画するシステムの解説・展示。今回の名乗りの由来。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊 / C108</span>
-        <div>
-          <div class="series">Maki / 自己勝手 共著</div>
-          <h3>シームレス・コネクト！〜波と信号をロスなく伝送する技術と実践〜</h3>
-          <p>波と信号を無駄なく伝える伝送技術を、理論と実践の両面から扱う一冊（40ページ）。技書博14（2026/9/13）でも頒布予定。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊 / 書典19</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.5</div>
-          <h3>光のかけはし Unity解説&光通信</h3>
-          <p>Unityの解説を軸に、光通信の信号増幅・変調、半導体、光ファイバーの基礎知識をカバー。自作アンテナでの観測や無線光通信実験も収録。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">単著</div>
-          <h3>弄って学ぶGUID Partition Table</h3>
-          <p>ディスクのパーティション管理方式の1つであるGPTの仕組みを深掘りした一冊。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊 / 書典17</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.4</div>
-          <h3>-100周年記念号-</h3>
-          <p>無線・電波天文学・強化学習などを扱った回。技術書典17（あ26）で頒布。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.3</div>
-          <h3>PlutoSDRをGNU Radioで動かしてみる ほか</h3>
-          <p>vol.2から発展し、SDR（ソフトウェア無線）を利用した実践的な通信を解説。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.2</div>
-          <h3>手持ちの測定器で電波天文</h3>
-          <p>TinySA等の簡易スペクトラムアナライザで太陽電波を受信し、宇宙の構成について考察する回。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">タンノ電子計算 vol.1</div>
-          <h3>6mDSBトランシーバー・ワイヤレスモデム 製作記 ほか</h3>
-          <p>アマチュア無線6mバンド用DSBトランシーバーと、自作ワイヤレスモデムの製作記。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊</span>
-        <div>
-          <div class="series">リバーシで強化学習 シリーズ</div>
-          <h3>4x4／8x8リバーシで強化学習!!（物理本）</h3>
-          <p>強化学習によるリバーシAI構築を扱う既刊2冊。8x8編はテーブルベースではなく関数近似・深層強化学習が中心。</p>
-        </div>
-      </div>
-      <div class="work">
-        <span class="tag kikanshi">既刊（電子）</span>
-        <div>
-          <div class="series">バックナンバー</div>
-          <h3>技術書典14〜17 頒布分</h3>
-          <p>過去の技術書典で頒布した電子書籍群。オンラインマーケットで購入可能。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        <section id="links">
+            <div class="section-head"><span class="section-num">04</span><h2>出展情報 / リンク</h2></div>
+            <div class="linkrow">
+                <a class="linkcard" href="https://techbookfest.org/organization/495BVt882QAtwuqzUDj9Rq" target="_blank" rel="noopener">
+                    <span class="k">技術書典 サークルページ</span>
+                    <span class="v">頒布物一覧・最新の出展情報はこちら</span>
+                </a>
+                <a class="linkcard" href="https://x.com/magic_tanno_rtn" target="_blank" rel="noopener">
+                    <span class="k">X（旧Twitter）</span>
+                    <span class="v">@magic_tanno_rtn — 進捗・お知らせ</span>
+                </a>
+                <a class="linkcard" href="https://kalmia.hatenadiary.jp/" target="_blank" rel="noopener">
+                    <span class="k">Yokaのブログ</span>
+                    <span class="v">リバーシAI・深層強化学習の開発記録</span>
+                </a>
+                <a class="linkcard" href="https://github.com/Yoka346/Kalmia-Reversi" target="_blank" rel="noopener">
+                    <span class="k">GitHub</span>
+                    <span class="v">Kalmia-Reversi — 自作リバーシAI</span>
+                </a>
+                <div class="linkcard">
+                    <span class="k">BOOTH「タンノの店」</span>
+                    <span class="v">既刊の電子版を頒布（URL未確認）</span>
+                </div>
+                <a class="linkcard" href="https://gishohaku.dev/" target="_blank" rel="noopener">
+                    <span class="k">技書博 公式サイト</span>
+                    <span class="v">第十四回・2026/9/13開催 / 大田区産業プラザPiO</span>
+                </a>
+                <a class="linkcard" href="https://classic-webcatalog.circle.ms/Circle/23017944" target="_blank" rel="noopener">
+                    <span class="k">コミケ Webカタログ</span>
+                    <span class="v">Circle.ms サークルページ（要ログイン）</span>
+                </a>
+                <a class="linkcard" href="https://portal.circle.ms/Circle/Index/10500535" target="_blank" rel="noopener">
+                    <span class="k">コミケ Circle.msポータル</span>
+                    <span class="v">サークル管理ページ（要ログイン）</span>
+                </a>
+            </div>
+        </section>
 
-  <div class="ruler" role="presentation"></div>
-
-  <section id="links">
-    <div class="section-head"><span class="section-num">04</span><h2>出展情報 / リンク</h2></div>
-    <div class="linkrow">
-      <a class="linkcard" href="https://techbookfest.org/organization/495BVt882QAtwuqzUDj9Rq" target="_blank" rel="noopener">
-        <span class="k">技術書典 サークルページ</span>
-        <span class="v">頒布物一覧・最新の出展情報はこちら</span>
-      </a>
-      <a class="linkcard" href="https://x.com/magic_tanno_rtn" target="_blank" rel="noopener">
-        <span class="k">X（旧Twitter）</span>
-        <span class="v">@magic_tanno_rtn — 進捗・お知らせ</span>
-      </a>
-      <a class="linkcard" href="https://kalmia.hatenadiary.jp/" target="_blank" rel="noopener">
-        <span class="k">Yokaのブログ</span>
-        <span class="v">リバーシAI・深層強化学習の開発記録</span>
-      </a>
-      <a class="linkcard" href="https://github.com/Yoka346/Kalmia-Reversi" target="_blank" rel="noopener">
-        <span class="k">GitHub</span>
-        <span class="v">Kalmia-Reversi — 自作リバーシAI</span>
-      </a>
-      <div class="linkcard">
-        <span class="k">BOOTH「タンノの店」</span>
-        <span class="v">既刊の電子版を頒布（URL未確認）</span>
-      </div>
-      <a class="linkcard" href="https://gishohaku.dev/" target="_blank" rel="noopener">
-        <span class="k">技書博 公式サイト</span>
-        <span class="v">第十四回・2026/9/13開催 / 大田区産業プラザPiO</span>
-      </a>
-      <a class="linkcard" href="https://classic-webcatalog.circle.ms/Circle/23017944" target="_blank" rel="noopener">
-        <span class="k">コミケ Webカタログ</span>
-        <span class="v">Circle.ms サークルページ（要ログイン）</span>
-      </a>
-      <a class="linkcard" href="https://portal.circle.ms/Circle/Index/10500535" target="_blank" rel="noopener">
-        <span class="k">コミケ Circle.msポータル</span>
-        <span class="v">サークル管理ページ（要ログイン）</span>
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <span>MAGIC TANNO — 技術書典・技書博・コミケ サークル</span>
-    <span class="mono">SLEEPING SINCE 3000 YEARS AGO</span>
-  </footer>
-
-</div>
+        <footer>
+            <span>MAGIC TANNO — 技術書典・技書博・コミケ サークル</span>
+            <span class="mono">SLEEPING SINCE 3000 YEARS AGO</span>
+        </footer>
+    </main>
 </body>
 </html>
